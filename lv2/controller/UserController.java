@@ -5,10 +5,7 @@ import com.example.demo.lv2.dto.ResponseUserDto;
 import com.example.demo.lv2.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -23,4 +20,10 @@ UserService userService;
     public ResponseEntity<ResponseUserDto> addUser(@RequestBody RequestUserDto requestUser) {
         return new ResponseEntity<>(userService.addUser(requestUser), HttpStatus.OK);
     }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<Long> getUserId(@PathVariable(name = "name") String name) {
+        return new ResponseEntity<>(userService.getUserId(name), HttpStatus.OK);
+    }
+
 }

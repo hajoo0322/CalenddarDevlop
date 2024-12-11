@@ -21,4 +21,10 @@ public class UserCoreService implements UserService{
         UserEntity save = userRepository.save(userEntity);
         return new ResponseUserDto(save);
     }
+
+    @Override
+    public Long getUserId(String name) {
+        Long id = userRepository.findByName(name);
+        return id;
+    }
 }

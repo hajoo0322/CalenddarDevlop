@@ -5,4 +5,6 @@ import com.example.demo.lv2.dto.ResponseUserDto;
 
 public interface UserService {
     ResponseUserDto addUser(RequestUserDto requestUser);
+
+    Long getUserId(String name);
 }
