@@ -1,0 +1,30 @@
+package com.example.demo.lv3.controller;
+
+import com.example.demo.lv3.dto.RequestUserDto;
+import com.example.demo.lv3.dto.ResponseUserDto;
+import com.example.demo.lv3.service.UserService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping
+    public ResponseEntity<ResponseUserDto> addUser(@Valid @RequestBody RequestUserDto requestUser) {
+        return new ResponseEntity<>(userService.addUser(requestUser), HttpStatus.OK);
+    }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<Long> getUserId(@PathVariable(name = "name") String name) {
+        return new ResponseEntity<>(userService.getUserId(name), HttpStatus.OK);
+    }
+
+}

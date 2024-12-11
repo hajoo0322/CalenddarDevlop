@@ -1,4 +1,4 @@
-package com.example.demo.lv2.dto;
+package com.example.demo.lv3.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,15 +12,10 @@ public class RequestUserDto {
     @Email
     private final String email;
 
-    private final String password;
-
     @JsonCreator
     public RequestUserDto(
-            @JsonProperty("name") String name,
-            @JsonProperty("email") String email,
-            @JsonProperty("password") String password) {
+            @JsonProperty("name") String name, @JsonProperty("email") String email) {
         this.name = name;
         this.email = email;
-        this.password = password;
     }
 }
