@@ -13,7 +13,6 @@ public class ResponseCalendarDto {
     private final String details;
     private final LocalDateTime createdDate;
     private final LocalDateTime lastModifiedDate;
-    private final UserEntity userEntity;
 
     public ResponseCalendarDto(CalendarEntity calendarEntity) {
         id = calendarEntity.getId();
@@ -21,6 +20,5 @@ public class ResponseCalendarDto {
         details = calendarEntity.getDetails();
         createdDate = calendarEntity.getCreatedDate();
         lastModifiedDate = calendarEntity.getLastModifiedDate();
-        userEntity = calendarEntity.getUser();
     }
 }

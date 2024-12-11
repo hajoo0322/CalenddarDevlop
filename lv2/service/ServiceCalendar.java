@@ -14,7 +14,7 @@ public interface ServiceCalendar {
 
     List<ResponseCalendarDto> getAllCalendar();
 
-    ResponseCalendarDto updateCalendar(PatchRequestCalendarDto patchRequestCalendarDto, Long id);
+    ResponseCalendarDto updateCalendar(PatchRequestCalendarDto patchRequestCalendarDto);
 
-    ResponseCalendarDto deleteCalendar(Long id);
+    void deleteCalendar(Long id);
 }

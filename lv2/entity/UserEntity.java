@@ -24,7 +24,7 @@ public class UserEntity {
     @CreatedDate
     private LocalDateTime createDate;
 
-    @OneToMany(mappedBy = "user_id")
+    @OneToMany(mappedBy = "user")
     List<CalendarEntity> calendarEntity;
 
     public UserEntity() {

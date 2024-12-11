@@ -3,6 +3,7 @@ package com.example.demo.lv2.controller;
 import com.example.demo.lv2.dto.RequestUserDto;
 import com.example.demo.lv2.dto.ResponseUserDto;
 import com.example.demo.lv2.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ UserService userService;
     }
 
     @PostMapping
-    public ResponseEntity<ResponseUserDto> addUser(@RequestBody RequestUserDto requestUser) {
+    public ResponseEntity<ResponseUserDto> addUser(@Valid @RequestBody RequestUserDto requestUser) {
         return new ResponseEntity<>(userService.addUser(requestUser), HttpStatus.OK);
     }
 

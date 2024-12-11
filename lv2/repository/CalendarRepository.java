@@ -10,4 +10,8 @@ import java.util.Optional;
 public interface CalendarRepository extends JpaRepository<CalendarEntity,Long> {
 
     List<CalendarEntity> findByUser(UserEntity userEntity);
+
+    CalendarEntity findByTitle(String title);
+
+    void deleteByUser(UserEntity userEntity);
 }

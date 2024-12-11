@@ -34,13 +34,14 @@ public class CalendarController {
         return new ResponseEntity<>(serviceCalendar.getAllCalendar(), HttpStatus.OK);
     }
 
-    @PatchMapping("/user/{id}")
-    public ResponseEntity<ResponseCalendarDto> updateCalendar(@RequestBody PatchRequestCalendarDto patchRequestCalendarDto, @PathVariable Long id) {
-        return new ResponseEntity<>(serviceCalendar.updateCalendar(patchRequestCalendarDto, id), HttpStatus.OK);
+    @PatchMapping
+    public ResponseEntity<ResponseCalendarDto> updateCalendar(@RequestBody PatchRequestCalendarDto patchRequestCalendarDto) {
+        return new ResponseEntity<>(serviceCalendar.updateCalendar(patchRequestCalendarDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<ResponseCalendarDto> deleteCalendar(@PathVariable Long id) {
-        return new ResponseEntity<>(serviceCalendar.deleteCalendar(id),HttpStatus.OK);
+    public ResponseEntity<Void> deleteCalendar(@PathVariable Long id) {
+        serviceCalendar.deleteCalendar(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

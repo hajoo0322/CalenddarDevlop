@@ -1,5 +1,7 @@
 package com.example.demo.lv2.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
 
@@ -10,7 +12,9 @@ public class RequestUserDto {
     @Email
     private final String email;
 
-    public RequestUserDto(String name, String email) {
+    @JsonCreator
+    public RequestUserDto(
+            @JsonProperty("name") String name, @JsonProperty("email") String email) {
         this.name = name;
         this.email = email;
     }
