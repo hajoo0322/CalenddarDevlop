@@ -19,13 +19,9 @@ public class CalendarService implements ServiceCalendar {
 
     @Override
     public ResponseCalendarDto addCalendar(RequestCalendarDto requestCalendarDto) {
-        CalendarEntity calendarEntity = new CalendarEntity(
-                requestCalendarDto.get(),
-                requestCalendarDto.getTitle(),
-                requestCalendarDto.getDetails());
-        calendarRepository.save(calendarEntity);
 
-        return new ResponseCalendarDto(calendarEntity);
+
+        return null;
     }
 
     @Override
@@ -43,12 +39,7 @@ public class CalendarService implements ServiceCalendar {
 
     @Override
     public ResponseCalendarDto updateCalendar(RequestCalendarDto requestCalendarDto, Long id) {
-        CalendarEntity calendar = calendarRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
-        calendar.setName(requestCalendarDto.getName());
-        calendar.setTitle(requestCalendarDto.getTitle());
-        calendar.setDetails(requestCalendarDto.getDetails());
-        CalendarEntity saveEntity = calendarRepository.save(calendar);
-        return new ResponseCalendarDto(saveEntity);
+        return null;
     }
 
     @Override

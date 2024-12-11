@@ -18,8 +18,10 @@ public class CalendarEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
-    private Long userId;
     @Setter
     private String title;
     @Setter
@@ -33,12 +35,6 @@ public class CalendarEntity {
 
     public CalendarEntity() {
 
-    }
-
-    public CalendarEntity(Long userId, String title, String details) {
-        this.userId = userId;
-        this.title = title;
-        this.details = details;
     }
 
 

@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 public class ResponseCalendarDto {
     private Long id;
 
-    private final String name;
     private final String title;
     private final String details;
     private final LocalDateTime createdDate;
@@ -17,7 +16,6 @@ public class ResponseCalendarDto {
 
     public ResponseCalendarDto(CalendarEntity calendarEntity) {
         id = calendarEntity.getId();
-        name = calendarEntity.getName();
         title = calendarEntity.getTitle();
         details = calendarEntity.getDetails();
         createdDate = calendarEntity.getCreatedDate();
