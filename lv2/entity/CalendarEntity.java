@@ -18,8 +18,8 @@ public class CalendarEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
-    private String name;
+
+    private Long userId;
     @Setter
     private String title;
     @Setter
@@ -35,8 +35,8 @@ public class CalendarEntity {
 
     }
 
-    public CalendarEntity(String name, String title, String details) {
-        this.name = name;
+    public CalendarEntity(Long userId, String title, String details) {
+        this.userId = userId;
         this.title = title;
         this.details = details;
     }

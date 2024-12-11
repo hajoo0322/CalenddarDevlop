@@ -20,7 +20,7 @@ public class CalendarService implements ServiceCalendar {
     @Override
     public ResponseCalendarDto addCalendar(RequestCalendarDto requestCalendarDto) {
         CalendarEntity calendarEntity = new CalendarEntity(
-                requestCalendarDto.getName(),
+                requestCalendarDto.get(),
                 requestCalendarDto.getTitle(),
                 requestCalendarDto.getDetails());
         calendarRepository.save(calendarEntity);
