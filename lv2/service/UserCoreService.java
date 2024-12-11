@@ -17,14 +17,14 @@ public class UserCoreService implements UserService{
 
     @Override
     public ResponseUserDto addUser(RequestUserDto requestUser) {
-        UserEntity userEntity = new UserEntity(requestUser.getName(), requestUser.getEmail(),requestUser.getPassword());
+        UserEntity userEntity = new UserEntity(requestUser.getName(), requestUser.getEmail());
         UserEntity save = userRepository.save(userEntity);
         return new ResponseUserDto(save);
     }
 
     @Override
     public Long getUserId(String name) {
-        Long id = userRepository.findByName(name);
-        return id;
+        Long byName = userRepository.findByName(name);
+        return byName;
     }
 }

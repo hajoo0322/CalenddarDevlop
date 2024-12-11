@@ -20,7 +20,6 @@ public class UserEntity {
 
     private String name;
     private String email;
-    private String password;
     @CreatedDate
     private LocalDateTime createDate;
 
@@ -30,10 +29,9 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(String name, String email, String password) {
+    public UserEntity(String name, String email) {
         this.name = name;
         this.email = email;
-        this.password = password;
     }
 
 

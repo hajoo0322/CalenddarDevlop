@@ -22,9 +22,9 @@ UserService userService;
         return new ResponseEntity<>(userService.addUser(requestUser), HttpStatus.OK);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<Long> getUserId(@PathVariable(name = "name") String name) {
-        return new ResponseEntity<>(userService.getUserId(name), HttpStatus.OK);
+    @GetMapping("/{name}/{password}")
+    public ResponseEntity<Long> getUserId(@PathVariable(name = "name") String name, @PathVariable(name = "password")String password) {
+        return new ResponseEntity<>(userService.getUserId(name,password), HttpStatus.OK);
     }
 
 }

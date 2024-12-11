@@ -23,8 +23,12 @@ public class UserCoreService implements UserService {
     }
 
     @Override
-    public Long getUserId(String name) {
-        Long id = userRepository.findByName(name);
-        return id;
+    public Long getUserId(String name, String password) {
+        UserEntity user = userRepository.findByName(name);
+        if (password.equals(user.getPassword())) {
+            return user.getId();
+        } else {
+            throw new RuntimeException();
+        }
     }
 }
