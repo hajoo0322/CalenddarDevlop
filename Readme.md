@@ -14,6 +14,20 @@
 - Lombok
 - Gradle
 
+## ERD (Entity Relationship Diagram)
+
+```mermaid
+erDiagram
+CALENDAR {
+Long id PK "자동 생성되는 기본키"
+String name "일정 담당자 이름"
+String title "일정 제목"
+String details "일정 상세 내용"
+LocalDateTime createdDate "생성 일시"
+LocalDateTime lastModifiedDate "수정 일시"
+}  
+```
+
 ## API 엔드포인트
 
 ### 1. 일정 생성
@@ -25,7 +39,7 @@
       "title": "일정 제목",
       "details": "일정 상세내용"
   }
-  ```
+
 
 ### 2. 일정 조회
 - 단일 조회: **GET** `/calendar/{id}`
