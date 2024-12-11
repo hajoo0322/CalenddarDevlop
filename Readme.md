@@ -64,21 +64,6 @@ LocalDateTime lastModifiedDate "수정 일시"
 - JPA Auditing을 통한 시간 정보 자동 관리
 - DTO 패턴을 통한 데이터 전송 계층 분리
 
-## 프로젝트 구조
-src/main/java/com/example/demo/lv1/
-├── controller
-│ └── CalendarController.java
-├── service
-│ ├── ServiceCalendar.java
-│ └── CalendarService.java
-├── repository
-│ └── CalendarRepository.java
-├── entity
-│ └── CalendarEntity.java
-└── dto
-├── RequestCalendarDto.java
-└── ResponseCalendarDto.java
-
 ## 데이터베이스 설정
 H2 인메모리 데이터베이스를 사용하며, 다음 설정으로 접근 가능합니다:
 - URL: `jdbc:h2:mem:testdb`
@@ -182,30 +167,6 @@ USER ||--o{ CALENDAR : "has"
 - JPA를 활용한 사용자-일정 간 일대다 관계 구현
 - 일정 데이터의 생성 시간과 수정 시간 자동 기록
 - DTO 패턴을 통한 계층 분리
-
-## 프로젝트 구조
-
-src/main/java/com/example/demo/lv2/
-├── controller
-│ ├── UserController.java
-│ └── CalendarController.java
-├── service
-│ ├── UserService.java
-│ ├── UserCoreService.java
-│ ├── ServiceCalendar.java
-│ └── CalendarService.java
-├── repository
-│ ├── UserRepository.java
-│ └── CalendarRepository.java
-├── entity
-│ ├── UserEntity.java
-│ └── CalendarEntity.java
-└── dto
-├── RequestUserDto.java
-├── ResponseUserDto.java
-├── RequestCalendarDto.java
-├── ResponseCalendarDto.java
-└── PatchRequestCalendarDto.java
 
 ## 데이터베이스 설정
 H2 인메모리 데이터베이스를 사용하며, 다음 설정으로 접근 가능합니다:
