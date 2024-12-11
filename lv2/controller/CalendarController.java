@@ -39,7 +39,7 @@ public class CalendarController {
         return new ResponseEntity<>(serviceCalendar.updateCalendar(patchRequestCalendarDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCalendar(@PathVariable Long id) {
         serviceCalendar.deleteCalendar(id);
         return new ResponseEntity<>(HttpStatus.OK);

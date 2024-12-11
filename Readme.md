@@ -159,8 +159,8 @@ USER ||--o{ CALENDAR : "has"
       "newDetails": "변경할 상세내용"
   }
   ```
-- **DELETE** `/calendar/user/{id}`
-  - 특정 사용자의 일정 삭제
+- **DELETE** `/calendar/{id}`
+  - 일정 삭제
 
 ## 주요 기능
 - 이메일 유효성 검사 (`@Email` 어노테이션 사용)
