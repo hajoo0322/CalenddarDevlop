@@ -1,4 +1,4 @@
-package com.example.demo.lv1;
+package com.example.demo.lv2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

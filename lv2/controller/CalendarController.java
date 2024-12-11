@@ -1,8 +1,8 @@
-package com.example.demo.lv1.controller;
+package com.example.demo.lv2.controller;
 
-import com.example.demo.lv1.dto.RequestCalendarDto;
-import com.example.demo.lv1.dto.ResponseCalendarDto;
-import com.example.demo.lv1.service.ServiceCalendar;
+import com.example.demo.lv2.dto.RequestCalendarDto;
+import com.example.demo.lv2.dto.ResponseCalendarDto;
+import com.example.demo.lv2.service.ServiceCalendar;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package com.example.demo.lv1.dto;
+package com.example.demo.lv2.dto;
 
-import com.example.demo.lv1.entity.CalendarEntity;
+import com.example.demo.lv2.entity.CalendarEntity;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

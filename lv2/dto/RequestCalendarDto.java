@@ -1,4 +1,4 @@
-package com.example.demo.lv1.dto;
+package com.example.demo.lv2.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

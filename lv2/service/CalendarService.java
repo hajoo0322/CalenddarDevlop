@@ -1,9 +1,9 @@
-package com.example.demo.lv1.service;
+package com.example.demo.lv2.service;
 
-import com.example.demo.lv1.dto.RequestCalendarDto;
-import com.example.demo.lv1.dto.ResponseCalendarDto;
-import com.example.demo.lv1.entity.CalendarEntity;
-import com.example.demo.lv1.repository.CalendarRepository;
+import com.example.demo.lv2.dto.RequestCalendarDto;
+import com.example.demo.lv2.dto.ResponseCalendarDto;
+import com.example.demo.lv2.entity.CalendarEntity;
+import com.example.demo.lv2.repository.CalendarRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
