@@ -1,33 +1,42 @@
 package com.example.demo.lv2.service;
 
+import com.example.demo.lv2.dto.PatchRequestCalendarDto;
 import com.example.demo.lv2.dto.RequestCalendarDto;
 import com.example.demo.lv2.dto.ResponseCalendarDto;
 import com.example.demo.lv2.entity.CalendarEntity;
+import com.example.demo.lv2.entity.UserEntity;
 import com.example.demo.lv2.repository.CalendarRepository;
+import com.example.demo.lv2.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class CalendarService implements ServiceCalendar {
     CalendarRepository calendarRepository;
-
-    public CalendarService(CalendarRepository calendarRepository) {
+    UserRepository userRepository;
+    public CalendarService(CalendarRepository calendarRepository, UserRepository userRepository) {
         this.calendarRepository = calendarRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public ResponseCalendarDto addCalendar(RequestCalendarDto requestCalendarDto) {
-
-
-        return null;
+    public ResponseCalendarDto addCalendar(RequestCalendarDto requestCalendarDto, Long id) {
+        Optional<UserEntity> byId = userRepository.findById(id);
+        CalendarEntity calendar = new CalendarEntity(byId.get(), requestCalendarDto);
+        CalendarEntity save = calendarRepository.save(calendar);
+        return new ResponseCalendarDto(save);
     }
 
     @Override
-    public ResponseCalendarDto getCalendar(Long id) {
-        CalendarEntity calendar = calendarRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
-        return new ResponseCalendarDto(calendar);
+    public List<ResponseCalendarDto> getCalendar(Long id) {
+        UserEntity userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+        List<CalendarEntity> byUser = calendarRepository.findByUser(userEntity);
+        return byUser.stream()
+                .map(ResponseCalendarDto::new)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -38,8 +47,11 @@ public class CalendarService implements ServiceCalendar {
     }
 
     @Override
-    public ResponseCalendarDto updateCalendar(RequestCalendarDto requestCalendarDto, Long id) {
-        return null;
+    public ResponseCalendarDto updateCalendar(PatchRequestCalendarDto patchRequestCalendarDto, Long id) {
+        UserEntity userEntity = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+        List<CalendarEntity> byUser = calendarRepository.findByUser(userEntity);
+
+        return
     }
 
     @Override

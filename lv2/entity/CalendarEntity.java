@@ -1,5 +1,6 @@
 package com.example.demo.lv2.entity;
 
+import com.example.demo.lv2.dto.RequestCalendarDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,8 +35,12 @@ public class CalendarEntity {
     private LocalDateTime lastModifiedDate;
 
     public CalendarEntity() {
-
     }
 
+    public CalendarEntity(UserEntity userEntity, RequestCalendarDto requestCalendarDto) {
+        this.user = userEntity;
+        this.title = requestCalendarDto.getTitle();
+        this.details = requestCalendarDto.getDetails();
+    }
 
 }

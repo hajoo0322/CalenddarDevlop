@@ -1,5 +1,6 @@
 package com.example.demo.lv2.controller;
 
+import com.example.demo.lv2.dto.PatchRequestCalendarDto;
 import com.example.demo.lv2.dto.RequestCalendarDto;
 import com.example.demo.lv2.dto.ResponseCalendarDto;
 import com.example.demo.lv2.service.ServiceCalendar;
@@ -18,13 +19,13 @@ public class CalendarController {
         this.serviceCalendar = serviceCalendar;
     }
 
-    @PostMapping
-    public ResponseEntity<ResponseCalendarDto> addCalendar(@RequestBody RequestCalendarDto requestCalendarDto) {
-        return new ResponseEntity<>(serviceCalendar.addCalendar(requestCalendarDto), HttpStatus.OK);
+    @PostMapping("/user/{id}")
+    public ResponseEntity<ResponseCalendarDto> addCalendar(@RequestBody RequestCalendarDto requestCalendarDto, @PathVariable(name = "id") Long id) {
+        return new ResponseEntity<>(serviceCalendar.addCalendar(requestCalendarDto,id), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ResponseCalendarDto> getCalendar(@PathVariable("id") Long id) {
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<ResponseCalendarDto>> getCalendar(@PathVariable("id") Long id) {
         return new ResponseEntity<>(serviceCalendar.getCalendar(id), HttpStatus.OK);
     }
 
@@ -33,12 +34,12 @@ public class CalendarController {
         return new ResponseEntity<>(serviceCalendar.getAllCalendar(), HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<ResponseCalendarDto> updateCalendar(@RequestBody RequestCalendarDto requestCalendarDto, @PathVariable Long id) {
-        return new ResponseEntity<>(serviceCalendar.updateCalendar(requestCalendarDto, id), HttpStatus.OK);
+    @PatchMapping("/user/{id}")
+    public ResponseEntity<ResponseCalendarDto> updateCalendar(@RequestBody PatchRequestCalendarDto patchRequestCalendarDto, @PathVariable Long id) {
+        return new ResponseEntity<>(serviceCalendar.updateCalendar(patchRequestCalendarDto, id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/user/{id}")
     public ResponseEntity<ResponseCalendarDto> deleteCalendar(@PathVariable Long id) {
         return new ResponseEntity<>(serviceCalendar.deleteCalendar(id),HttpStatus.OK);
     }

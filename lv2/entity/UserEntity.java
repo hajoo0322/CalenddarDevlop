@@ -34,4 +34,6 @@ public class UserEntity {
         this.name = name;
         this.email = email;
     }
+
+
 }
