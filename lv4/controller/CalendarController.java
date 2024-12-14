@@ -4,6 +4,7 @@ import com.example.demo.lv4.dto.PatchRequestCalendarDto;
 import com.example.demo.lv4.dto.RequestCalendarDto;
 import com.example.demo.lv4.dto.ResponseCalendarDto;
 import com.example.demo.lv4.service.ServiceCalendar;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,14 +20,16 @@ public class CalendarController {
         this.serviceCalendar = serviceCalendar;
     }
 
-    @PostMapping("/user/{id}")
-    public ResponseEntity<ResponseCalendarDto> addCalendar(@RequestBody RequestCalendarDto requestCalendarDto, @PathVariable(name = "id") Long id) {
-        return new ResponseEntity<>(serviceCalendar.addCalendar(requestCalendarDto,id), HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<ResponseCalendarDto> addCalendar(@RequestBody RequestCalendarDto requestCalendarDto, HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        return new ResponseEntity<>(serviceCalendar.addCalendar(requestCalendarDto,userId), HttpStatus.OK);
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<ResponseCalendarDto>> getCalendar(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(serviceCalendar.getCalendar(id), HttpStatus.OK);
+    @GetMapping
+    public ResponseEntity<List<ResponseCalendarDto>> getCalendar(HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        return new ResponseEntity<>(serviceCalendar.getCalendar(userId), HttpStatus.OK);
     }
 
     @GetMapping("/all")
@@ -39,9 +42,10 @@ public class CalendarController {
         return new ResponseEntity<>(serviceCalendar.updateCalendar(patchRequestCalendarDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCalendar(@PathVariable Long id) {
-        serviceCalendar.deleteCalendar(id);
+    @DeleteMapping
+    public ResponseEntity<Void> deleteCalendar(HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        serviceCalendar.deleteCalendar(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
