@@ -1,5 +1,6 @@
 package com.example.demo.lv4.service;
 
+import com.example.demo.lv4.dto.LoginRequestDto;
 import com.example.demo.lv4.dto.RequestUserDto;
 import com.example.demo.lv4.dto.ResponseUserDto;
 import com.example.demo.lv4.entity.UserEntity;
@@ -23,9 +24,9 @@ public class UserCoreService implements UserService {
     }
 
     @Override
-    public Long getUserId(String name, String password) {
-        UserEntity user = userRepository.findByName(name);
-        if (password.equals(user.getPassword())) {
+    public Long getUserId(LoginRequestDto loginRequestDto) {
+        UserEntity user = userRepository.findByEmail(loginRequestDto.getEmail());
+        if (loginRequestDto.getPassword().equals(user.getPassword())) {
             return user.getId();
         } else {
             throw new RuntimeException();

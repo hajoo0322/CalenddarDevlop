@@ -1,8 +1,11 @@
 package com.example.demo.lv4.repository;
 
 import com.example.demo.lv4.entity.UserEntity;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
-    UserEntity findByName(String name);
+
+    UserEntity findByEmail(@NotBlank @Email String email);
 }
