@@ -1,5 +1,7 @@
 package com.example.demo.lv4.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -13,4 +15,12 @@ public class LoginRequestDto {
 
     @NotBlank
     private String password;
+
+    @JsonCreator
+    public LoginRequestDto(
+            @JsonProperty("email") String email,
+            @JsonProperty("password") String password) {
+        this.email = email;
+        this.password = password;
+    }
 }
