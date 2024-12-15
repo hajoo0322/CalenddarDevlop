@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class CalendarService implements ServiceCalendar {
     CalendarRepository calendarRepository;
     UserRepository userRepository;
+
     public CalendarService(CalendarRepository calendarRepository, UserRepository userRepository) {
         this.calendarRepository = calendarRepository;
         this.userRepository = userRepository;

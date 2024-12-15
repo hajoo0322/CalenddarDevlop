@@ -5,6 +5,7 @@ import com.example.demo.lv5.dto.RequestCalendarDto;
 import com.example.demo.lv5.dto.ResponseCalendarDto;
 import com.example.demo.lv5.service.ServiceCalendar;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class CalendarController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseCalendarDto> addCalendar(@RequestBody RequestCalendarDto requestCalendarDto, HttpSession session) {
+    public ResponseEntity<ResponseCalendarDto> addCalendar(@Valid @RequestBody RequestCalendarDto requestCalendarDto, HttpSession session) {
         Long userId = (Long) session.getAttribute("userId");
         return new ResponseEntity<>(serviceCalendar.addCalendar(requestCalendarDto,userId), HttpStatus.OK);
     }
@@ -38,7 +39,7 @@ public class CalendarController {
     }
 
     @PatchMapping
-    public ResponseEntity<ResponseCalendarDto> updateCalendar(@RequestBody PatchRequestCalendarDto patchRequestCalendarDto) {
+    public ResponseEntity<ResponseCalendarDto> updateCalendar(@Valid @RequestBody PatchRequestCalendarDto patchRequestCalendarDto) {
         return new ResponseEntity<>(serviceCalendar.updateCalendar(patchRequestCalendarDto), HttpStatus.OK);
     }
 
