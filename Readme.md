@@ -609,3 +609,144 @@ H2 인메모리 데이터베이스를 사용하며, 다음 설정으로 접근 �
 - Level 5와 달리 예외 처리 및 사용자 피드백 개선이 추가되었습니다
 
 </details>
+
+<details>
+<summary>Level 7 - Calendar API with User Authentication and Comment Management</summary>
+
+## 프로젝트 소개
+이 프로젝트는 Level 6의 기능을 확장하여 사용자 인증 기능과 댓글 관리 기능을 추가한 REST API입니다. 사용자는 패스워드를 통해 인증을 받아야 일정을 관리할 수 있으며, 각 일정에 대한 댓글을 추가하고 조회할 수 있습니다.
+
+## 기술 스택
+- Java 17
+- Spring Boot 3.4.0
+- Spring Data JPA
+- H2 Database
+- Lombok
+- Gradle
+- Jakarta Validation
+
+## ERD (Entity Relationship Diagram)
+
+```erDiagram
+USER {
+Long id PK "자동 생성되는 기본키"
+String name "사용자 이름"
+String email "이메일 주소"
+String password "사용자 비밀번호"
+LocalDateTime createDate "생성 일시"
+}
+CALENDAR {
+Long id PK "자동 생성되는 기본키"
+Long user_id FK "사용자 ID"
+String title "일정 제목"
+String details "일정 상세 내용"
+LocalDateTime createdDate "생성 일시"
+LocalDateTime lastModifiedDate "수정 일시"
+}
+COMMENT {
+Long id PK "자동 생성되는 기본키"
+Long user_id FK "사용자 ID"
+Long calendar_id FK "일정 ID"
+String comment "댓글 내용"
+LocalDateTime createdDate "생성 일시"
+}
+USER ||--o{ CALENDAR : "has"
+CALENDAR ||--o{ COMMENT : "has"
+USER ||--o{ COMMENT : "writes"
+```
+
+## API 엔드포인트
+
+### 1. 사용자 관리
+- **POST** `/user/signup`
+  - 사용자 생성
+  ```json
+  {
+      "name": "사용자 이름",
+      "email": "user@example.com",
+      "password": "사용자비밀번호"
+  }
+  ```
+- **POST** `/user/login`
+  - 사용자 인증 및 ID 조회
+  ```json
+  {
+      "email": "user@example.com",
+      "password": "사용자비밀번호"
+  }
+  ```
+- **POST** `/user/logout`
+  - 사용자 로그아웃
+
+### 2. 일정 관리
+- **POST** `/calendar`
+  - 특정 사용자의 일정 생성
+  ```json
+  {
+      "title": "일정 제목",
+      "details": "일정 상세내용"
+  }
+  ```
+- **GET** `/calendar`
+  - 특정 사용자의 모든 일정 조회
+- **GET** `/calendar/all`
+  - 전체 일정 조회
+- **PATCH** `/calendar`
+  - 일정 수정
+  ```json
+  {
+      "request_calendar_dto": {
+          "title": "수정할 일정 제목",
+          "details": "현재 상세내용"
+      },
+      "new_details": "변경할 상세내용"
+  }
+  ```
+- **DELETE** `/calendar`
+  - 일정 삭제
+
+### 3. 댓글 관리
+- **POST** `/comment`
+  - 특정 일정에 댓글 추가
+  ```json
+  {
+      "calendar_id": "일정 ID",
+      "comment": "댓글 내용"
+  }
+  ```
+- **GET** `/comment/calendar/{calendarId}`
+  - 특정 일정의 모든 댓글 조회
+- **PATCH** `/comment`
+  - 댓글 수정
+  ```json
+  {
+      "comment_id": "댓글 ID",
+      "new_comment": "수정된 댓글 내용"
+  }
+  ```
+- **DELETE** `/comment/{commentId}`
+  - 댓글 삭제
+
+
+## 주요 기능
+- 사용자 패스워드 인증 및 유효성 검사
+- 이메일 유효성 검사 (`@Email` 어노테이션 사용)
+- JPA를 활용한 사용자-일정 간 일대다 관계 구현
+- 일정 데이터의 생성 시간과 수정 시간 자동 기록
+- 댓글 기능을 통한 일정에 대한 사용자 피드백 제공
+- DTO 패턴을 통한 계층 분리
+- 예외 처리 및 사용자 피드백 개선
+
+## 데이터베이스 설정
+H2 인메모리 데이터베이스를 사용하며, 다음 설정으로 접근 가능합니다:
+- URL: `jdbc:h2:mem:testdb`
+- Username: `sa`
+- Password: (빈 값)
+- H2 콘솔: `http://localhost:8080/h2-console`
+
+## 참고사항
+- 애플리케이션 실행 시 자동으로 테이블이 생성됩니다
+- 인메모리 데이터베이스를 사용하므로 애플리케이션 재시작 시 데이터가 초기화됩니다
+- Level 6과 달리 댓글 관리 기능이 추가되었습니다
+
+</details>

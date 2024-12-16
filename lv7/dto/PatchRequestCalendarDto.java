@@ -18,9 +18,9 @@ public class PatchRequestCalendarDto {
 
     @JsonCreator
     public PatchRequestCalendarDto(
-            @JsonProperty("requestCalendarDto")
+            @JsonProperty("request_calendar_dto")
             RequestCalendarDto requestCalendarDto,
-            @JsonProperty("newDetails")
+            @JsonProperty("new_details")
             String newDetails)
     {
         this.requestCalendarDto = requestCalendarDto;
