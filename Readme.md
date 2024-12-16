@@ -627,7 +627,8 @@ H2 인메모리 데이터베이스를 사용하며, 다음 설정으로 접근 �
 
 ## ERD (Entity Relationship Diagram)
 
-```erDiagram
+```mermaid
+erDiagram
 USER {
 Long id PK "자동 생성되는 기본키"
 String name "사용자 이름"
