@@ -1,5 +1,6 @@
 package com.example.demo.lv7.controller;
 
+import com.example.demo.lv7.dto.PatchRequestComment;
 import com.example.demo.lv7.dto.RequestCommentDto;
 import com.example.demo.lv7.dto.ResponseCommentDto;
 import com.example.demo.lv7.service.CommentService;
@@ -28,5 +29,16 @@ public class CommentController {
     @GetMapping("/calendar/{calendar_id}")
     public ResponseEntity<List<ResponseCommentDto>> getComment(@PathVariable("calendar_id") Long calendarId) {
         return new ResponseEntity<>(commentService.getComment(calendarId), HttpStatus.OK);
+    }
+
+    @PatchMapping
+    public ResponseEntity<ResponseCommentDto> updateComment(PatchRequestComment patchRequestComment) {
+        return new ResponseEntity<>(commentService.updateComment(patchRequestComment), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{comment_id}")
+    public ResponseEntity<Void> deleteComment(@PathVariable("comment_id") Long id) {
+        commentService.deleteComment(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

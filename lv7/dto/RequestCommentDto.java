@@ -1,5 +1,7 @@
 package com.example.demo.lv7.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
@@ -12,7 +14,10 @@ public class RequestCommentDto {
     @NotNull
     private final String comment;
 
-    public RequestCommentDto(Long calendarId, String comment) {
+    @JsonCreator
+    public RequestCommentDto(
+            @JsonProperty("calendar_id") Long calendarId,
+            @JsonProperty("comment") String comment) {
         this.calendarId = calendarId;
         this.comment = comment;
     }
