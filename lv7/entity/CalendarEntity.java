@@ -9,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Entity
@@ -22,6 +23,10 @@ public class CalendarEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
+
+    @OneToMany
+    @JoinColumn(name = "calendar_id")
+    private List<CommentEntity> commentEntityList;
 
     @Setter
     private String title;
