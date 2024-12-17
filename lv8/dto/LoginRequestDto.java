@@ -11,10 +11,10 @@ public class LoginRequestDto {
 
     @NotBlank
     @Email
-    private String email;
+    private final String email;
 
     @NotBlank
-    private String password;
+    private final String password;
 
     @JsonCreator
     public LoginRequestDto(

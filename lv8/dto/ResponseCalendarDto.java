@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter
 public class ResponseCalendarDto {
-    private Long id;
+    private final Long id;
     private final String title;
     private final String details;
     private final LocalDateTime createdDate;

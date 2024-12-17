@@ -5,6 +5,7 @@ import com.example.demo.lv8.dto.RequestCommentDto;
 import com.example.demo.lv8.dto.ResponseCommentDto;
 import com.example.demo.lv8.service.CommentService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseCommentDto> addComment(RequestCommentDto requestCommentDto, HttpSession httpSession) {
+    public ResponseEntity<ResponseCommentDto> addComment(@Valid @RequestBody RequestCommentDto requestCommentDto, HttpSession httpSession) {
         Long userId = (Long) httpSession.getAttribute("userId");
         return new ResponseEntity<>(commentService.addComment(requestCommentDto, userId), HttpStatus.OK);
     }
@@ -32,7 +33,7 @@ public class CommentController {
     }
 
     @PatchMapping
-    public ResponseEntity<ResponseCommentDto> updateComment(PatchRequestComment patchRequestComment) {
+    public ResponseEntity<ResponseCommentDto> updateComment(@Valid @RequestBody PatchRequestComment patchRequestComment) {
         return new ResponseEntity<>(commentService.updateComment(patchRequestComment), HttpStatus.OK);
     }
 
