@@ -1,11 +1,16 @@
 package com.example.demo.lv8.controller;
 
+import com.example.demo.lv8.dto.PageResponseDto;
 import com.example.demo.lv8.dto.PatchRequestCalendarDto;
 import com.example.demo.lv8.dto.RequestCalendarDto;
 import com.example.demo.lv8.dto.ResponseCalendarDto;
 import com.example.demo.lv8.service.ServiceCalendar;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,9 +38,12 @@ public class CalendarController {
         return new ResponseEntity<>(serviceCalendar.getCalendar(userId), HttpStatus.OK);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<ResponseCalendarDto>> getAllCalendar() {
-        return new ResponseEntity<>(serviceCalendar.getAllCalendar(), HttpStatus.OK);
+    @GetMapping("/all/page")
+    public ResponseEntity<Page<PageResponseDto>> getAllCalendar(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("lastModifiedDate").descending());
+        return new ResponseEntity<>(serviceCalendar.getPageCalendar(pageable), HttpStatus.OK);
     }
 
     @PatchMapping

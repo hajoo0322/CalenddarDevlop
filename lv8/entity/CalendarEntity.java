@@ -24,6 +24,7 @@ public class CalendarEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
+
     @OneToMany
     @JoinColumn(name = "calendar_id")
     private List<CommentEntity> commentEntityList;

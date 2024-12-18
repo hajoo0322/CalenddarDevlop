@@ -1,5 +1,6 @@
 package com.example.demo.lv8.service;
 
+import com.example.demo.lv8.dto.PageResponseDto;
 import com.example.demo.lv8.dto.PatchRequestCalendarDto;
 import com.example.demo.lv8.dto.RequestCalendarDto;
 import com.example.demo.lv8.dto.ResponseCalendarDto;
@@ -7,8 +8,11 @@ import com.example.demo.lv8.entity.CalendarEntity;
 import com.example.demo.lv8.entity.UserEntity;
 import com.example.demo.lv8.repository.CalendarRepository;
 import com.example.demo.lv8.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,10 +45,11 @@ public class CalendarService implements ServiceCalendar {
     }
 
     @Override
-    public List<ResponseCalendarDto> getAllCalendar() {
-        List<CalendarEntity> all = calendarRepository.findAll();
-        return all.stream()
-                .map(ResponseCalendarDto::new).collect(Collectors.toList());
+    public Page<PageResponseDto> getPageCalendar(Pageable pageable) {
+        Page<CalendarEntity> calendarEntities =
+                calendarRepository.findAll(pageable);
+        return calendarEntities.map(PageResponseDto::new);
+
     }
 
     @Override
